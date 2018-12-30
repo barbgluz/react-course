@@ -1,0 +1,11 @@
+.UserOutput {
+    width: 60%;
+    margin: 0 auto;
+    color: blueviolet;
+}
+.UserOutput > p {
+    border: 1px solid blueviolet;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #CCC;
+}
