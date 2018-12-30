@@ -2,9 +2,9 @@ import React from 'react';
 
 const userOutput = (props) => {
     return (
-            <div class="UserOutput">
+            <div className="UserOutput">
                 <p>{props.username}</p>
-                <p></p>
+                <p>{props.username}</p>
             </div>
             );
 }
