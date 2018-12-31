@@ -58,10 +58,10 @@ class App extends Component {
 
                     <button
                         style={style}
-                        onClick={() => this.togglePersonsHandler}>Switch name</button>
+                        onClick={this.togglePersonsHandler}>Switch name</button>
 
                     {
-                        (this.state.showPersons === true) ?
+                        (this.state.showPersons) ?
                             <div>
                                 <Person
                                     name={this.state.persons[0].name}
