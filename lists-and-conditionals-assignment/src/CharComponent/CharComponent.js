@@ -11,7 +11,7 @@ const charComponent = (props) => {
         border: '1px solid black',
     }
     return (
-            <div className="CharComponent" style={style}>{props.char}</div>
+            <div className="CharComponent" style={style} onClick={props.clicked}>{props.char}</div>
             );
 }
 
