@@ -47,7 +47,8 @@ class App extends Component {
 
     render() {
         const style = {
-            backgroundColor: "white",
+            backgroundColor: "green",
+            color: "white",
             font: "inherit",
             border: "1px solid #EAF400",
             padding: "8px",
@@ -62,21 +63,30 @@ class App extends Component {
             persons = (
                     <div>
                         {this.state.persons.map((person, index) => {
-                            return <Person
-                                click={() => this.deletePersonHandler(index)}
-                                name={person.name}
-                                age={person.age}
-                                key={person.id}
-                                changed={(event) => this.nameChangeHandler(event, person.id)}/>
+                        return <Person
+                            click={() => this.deletePersonHandler(index)}
+                            name={person.name}
+                            age={person.age}
+                            key={person.id}
+                            changed={(event) => this.nameChangeHandler(event, person.id)}/>
                         })}
                     </div>
-                    )
+                    );
+            style.backgroundColor = 'red';
+        }
+
+        let classes = [''];
+        if(this.state.persons.length <= 2) {
+            classes.push('red');
+        }
+        if(this.state.persons.length <= 1) {
+            classes.push('bold');
         }
 
         return (
                 <div className="App">
                     <h1>Hi, I'm a react app</h1>
-                    <p>Another heading</p>
+                    <p className={classes.join(' ')}>Another heading</p>
 
                     <button
                         style={style}
