@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
-import './App.css';
-import './Person/Person.css';
+import classes from './App.module.css';
 
 class App extends Component {
 
@@ -46,47 +45,48 @@ class App extends Component {
     }
 
     render() {
-        const style = {
-            backgroundColor: "white",
-            font: "inherit",
-            border: "1px solid #EAF400",
-            padding: "8px",
-            cursor: "pointer",
-            boxShaddow: "none",
-            borderRadius: "8px"
-        };
 
         let persons = null;
+        let btnClass= '';
         if(this.state.showPersons) {
 
             persons = (
                     <div>
                         {this.state.persons.map((person, index) => {
-                            return <Person
-                                click={() => this.deletePersonHandler(index)}
-                                name={person.name}
-                                age={person.age}
-                                key={person.id}
-                                changed={(event) => this.nameChangeHandler(event, person.id)}/>
+                        return <Person
+                            click={() => this.deletePersonHandler(index)}
+                            name={person.name}
+                            age={person.age}
+                            key={person.id}
+                            changed={(event) => this.nameChangeHandler(event, person.id)}/>
                         })}
                     </div>
-                    )
+                    );
+            btnClass = classes.Red;
+        }
+
+        let assignedClasses = [''];
+        if(this.state.persons.length <= 2) {
+            assignedClasses.push(classes.red);
+        }
+        if(this.state.persons.length <= 1) {
+            assignedClasses.push(classes.bold);
         }
 
         return (
-                <div className="App">
-                    <h1>Hi, I'm a react app</h1>
-                    <p>Another heading</p>
+            <div className={classes.App}>
+                <h1>Hi, I'm a react app</h1>
+                <p className={assignedClasses.join(' ')}>Another heading</p>
 
-                    <button
-                        style={style}
-                        onClick={this.togglePersonsHandler}>Switch name</button>
+                <button
+                    className={btnClass}
+                    onClick={this.togglePersonsHandler}>Switch name</button>
 
-                    {persons}
+                {persons}
 
-                </div>
+            </div>
 
-                );
+        );
 
         //return React.createElement('div', {className: 'App' }, React.createElement('h1', null,  "Does this work now?"));
     }
