@@ -5,16 +5,28 @@ import classes from './App.module.css';
 
 class App extends Component {
 
-    state = {
-        persons: [
+    constructor(props) {
+        super(props);
+        console.log('[App.js] Inside constructor', props);
+        this.state = {
+            persons: [
             { id: 'shfs', name : "Max", age: 28 },
             { id: 'asf', name : "Gabi", age: 20 },
             { id: 'avvd', name : "Stephanie", age: 26 }
-        ],
-        otherState: "some other value",
-        showPersons: false,
+            ],
+            otherState: "some other value",
+            showPersons: false,
+        }
+
     }
 
+    componentWillMount() {
+        console.log('[App.js] Inside componentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('[App.js] Inside componentDidMount');
+    }
 
     deletePersonHandler = (personsIndex) => {
         //const persons = this.state.persons.slice();
@@ -46,25 +58,26 @@ class App extends Component {
     }
 
     render() {
+        console.log('[App.js] Inside render');
 
         let persons = null;
         if(this.state.showPersons) {
             persons = <Persons
-                    persons={this.state.persons}
-                    clicked={this.deletePersonHandler}
-                    changed={this.nameChangeHandler} />;
+                persons={this.state.persons}
+                clicked={this.deletePersonHandler}
+                changed={this.nameChangeHandler} />;
         }
 
         return (
-            <div className={classes.App}>
-                <Cockpit
-                    showPersons={this.state.showPersons}
-                    persons={this.state.persons}
-                    clicked={this.togglePersonsHandler} />
+                <div className={classes.App}>
+                    <Cockpit
+                        showPersons={this.state.showPersons}
+                        persons={this.state.persons}
+                        clicked={this.togglePersonsHandler} />
                     {persons}
-            </div>
+                </div>
 
-        );
+                );
 
         //return React.createElement('div', {className: 'App' }, React.createElement('h1', null,  "Does this work now?"));
     }
